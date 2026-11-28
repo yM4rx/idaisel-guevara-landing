@@ -10,14 +10,14 @@ const t = useTranslations(lang);
   
   <div class="shrink-0">
     <a href="/" class="text-on-surface text-xl md:text-2xl font-serif tracking-wide hover:opacity-80 transition-opacity">
-      {t('header.title')}  
+      {t.header.title}  
     </a>
   </div>
 
   <nav class="hidden md:flex items-center gap-8 text-sm tracking-widest text-gray-300 uppercase">
-    <a href="#servicios" class="hover:text-white transition-colors">Servicios</a>
-    <a href="#sobre-mi" class="hover:text-white transition-colors">Sobre mí</a>
-    <a href="#contacto" class="hover:text-white transition-colors">Contacto</a>
+    <a href="#servicios" class="hover:text-white transition-colors">{t.header.nav.services}</a>
+    <a href="#sobre-mi" class="hover:text-white transition-colors">{t.header.nav.about}</a>
+    <a href="#contacto" class="hover:text-white transition-colors">{t.header.nav.contact}</a>
   </nav>
 
   <div class="flex items-center gap-4">
