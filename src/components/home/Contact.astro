@@ -1,5 +1,20 @@
 ---
 import {Icon} from 'astro-icon/components';
+
+
+
+import { useTranslations } from '@i18n/utils';
+
+const lang = Astro.currentLocale as 'es' | 'en';
+const t = useTranslations(lang);
+
+
+const email = 'idaisel@igaimportaciones.com'
+const phoneNumber = '01 305 690 2553'
+
+const {title, info, header, card, footer, form} = t.contact
+
+const {button,footer: formFooter,placeholders,titles} = form
 ---
 
 <section id="contacto" class="w-full bg-[#0f0f0f] py-20 px-6 font-sans text-gray-300">
@@ -7,10 +22,10 @@ import {Icon} from 'astro-icon/components';
 
     <div class="flex flex-col justify-between">
       <div>
-        <p class="text-xs tracking-widest text-gray-500 uppercase mb-4">03 / Comunicación</p>
-        <h2 class="text-5xl md:text-6xl font-serif text-white mb-6">Contacto</h2>
+        <p class="text-xs tracking-widest text-gray-500 uppercase mb-4">{header}</p>
+        <h2 class="text-5xl md:text-6xl font-serif text-white mb-6">{title}</h2>
         <p class="text-lg text-gray-400 max-w-md mb-12 leading-relaxed">
-          ¿Eres proveedor y quieres colaborar? Escríbeme directamente o agenda una conversación.
+          {info}
         </p>
 
         <div class="flex flex-col gap-4 max-w-md">
@@ -22,11 +37,11 @@ import {Icon} from 'astro-icon/components';
               </div>
               <div>
                 <p class="text-[10px] tracking-widest text-gray-500 uppercase">Email</p>
-                <p class="text-sm text-white">idaisel@igaimportaciones.com</p>
+                <p class="text-sm text-white">{email}</p>
               </div>
             </div>
-            <a href="mailto:>idaisel@igaimportaciones.com<" class="bg-[#1a1a1a] px-4 py-2 text-[10px] tracking-widest uppercase text-white rounded hover:bg-[#d4c4a8] hover:text-black transition-colors">
-              Enviar Email
+            <a href={`mailto:>${email}<`} class="bg-[#1a1a1a] px-4 py-2 text-[10px] tracking-widest uppercase text-white rounded hover:bg-[#d4c4a8] hover:text-black transition-colors">
+              {card.email.button}
             </a>
           </div>
 
@@ -37,11 +52,11 @@ import {Icon} from 'astro-icon/components';
               </div>
               <div>
                 <p class="text-[10px] tracking-widest text-gray-500 uppercase">WhatsApp</p>
-                <p class="text-sm text-white">+01 305 690 2553</p>
+                <p class="text-sm text-white">+{phoneNumber}</p>
               </div>
             </div>
-            <a href="https://wa.me/013056902553" target="_blank" rel="noopener noreferrer" class="bg-[#1a1a1a] px-4 py-2 text-[10px] tracking-widest uppercase text-white rounded hover:bg-[#d4c4a8] hover:text-black transition-colors">
-              Escribir por WhatsApp
+            <a href={`https://wa.me/${phoneNumber}`} target="_blank" rel="noopener noreferrer" class="bg-[#1a1a1a] px-4 py-2 text-[10px] tracking-widest uppercase text-white rounded hover:bg-[#d4c4a8] hover:text-black transition-colors">
+              {card.whatsapp.button}
             </a>
           </div>
 
@@ -49,7 +64,7 @@ import {Icon} from 'astro-icon/components';
       </div>
 
       <p class="text-sm text-gray-500 mt-16 lg:mt-0">
-        Revisión directa de portafolios y catálogos en un plazo máximo de 24 horas hábiles.
+        {footer}
       </p>
     </div>
 
@@ -58,33 +73,33 @@ import {Icon} from 'astro-icon/components';
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div class="flex flex-col gap-2">
-            <label for="nombre" class="text-[10px] tracking-widest uppercase text-gray-400 font-semibold">Nombre / Empresa</label>
-            <input type="text" id="nombre" placeholder="Ej. Distribuidora Central" class="bg-[#141414] border border-white/5 rounded p-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#d4c4a8] transition-colors" required>
+            <label for="nombre" class="text-[10px] tracking-widest uppercase text-gray-400 font-semibold">{titles.name}</label>
+            <input type="text" id="nombre" placeholder={placeholders.name} class="bg-[#141414] border border-white/5 rounded p-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#d4c4a8] transition-colors" required>
           </div>
           <div class="flex flex-col gap-2">
-            <label for="email" class="text-[10px] tracking-widest uppercase text-gray-400 font-semibold">Correo Electrónico</label>
-            <input type="email" id="email" placeholder="proveedor@empresa.com" class="bg-[#141414] border border-white/5 rounded p-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#d4c4a8] transition-colors" required>
+            <label for="email" class="text-[10px] tracking-widest uppercase text-gray-400 font-semibold">{titles.email}</label>
+            <input type="email" id="email" placeholder={placeholders.email} class="bg-[#141414] border border-white/5 rounded p-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#d4c4a8] transition-colors" required>
           </div>
         </div>
 
         <div class="flex flex-col gap-2">
-          <label for="rubro" class="text-[10px] tracking-widest uppercase text-gray-400 font-semibold">Tipo de Producto / Rubro</label>
-          <input type="text" id="rubro" placeholder="Ej. Textiles, acabados, equipamiento, insumos..." class="bg-[#141414] border border-white/5 rounded p-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#d4c4a8] transition-colors" required>
+          <label for="rubro" class="text-[10px] tracking-widest uppercase text-gray-400 font-semibold">{titles.product}</label>
+          <input type="text" id="rubro" placeholder={placeholders.product} class="bg-[#141414] border border-white/5 rounded p-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#d4c4a8] transition-colors" required>
         </div>
 
         <div class="flex flex-col gap-2">
-          <label for="mensaje" class="text-[10px] tracking-widest uppercase text-gray-400 font-semibold">Mensaje o Detalles de Catálogo</label>
-          <textarea id="mensaje" rows="5" placeholder="Detalla volúmenes mínimos, plazos promedio y catálogo disponible..." class="bg-[#141414] border border-white/5 rounded p-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#d4c4a8] transition-colors resize-none" required></textarea>
+          <label for="mensaje" class="text-[10px] tracking-widest uppercase text-gray-400 font-semibold">{titles.message}</label>
+          <textarea id="mensaje" rows="5" placeholder={placeholders.message} class="bg-[#141414] border border-white/5 rounded p-3 text-sm text-white placeholder-gray-600 focus:outline-none focus:border-[#d4c4a8] transition-colors resize-none" required></textarea>
         </div>
 
         <div class="flex flex-col sm:flex-row items-center justify-between gap-4 mt-4">
           <button type="submit" class="w-full sm:w-auto bg-[#d4c4a8] text-[#1a1a1a] px-8 py-4 text-xs font-bold tracking-widest uppercase rounded hover:bg-[#c4b498] transition-colors flex items-center justify-center gap-2 group">
-            Enviar Mensaje
+            {button}
             <Icon name="lucide:arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </button>
           
           <p class="text-[10px] tracking-widest uppercase text-gray-500">
-            Privacidad Estricta B2B
+            {formFooter}
           </p>
         </div>
 
